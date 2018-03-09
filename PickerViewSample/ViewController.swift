@@ -66,6 +66,8 @@ class ViewController: UIViewController {
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         pickerView?.addTextField(textField: textField)
+        // デフォルトで表示される値を設定
+        pickerView?.selectRow(3, inComponent: 0, animated: false)
         return true
     }
     

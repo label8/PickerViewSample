@@ -21,16 +21,8 @@ enum PickerType: Int {
 
 class AreaPickerView: UIPickerView {
     
-    var prefList = [[String: Any]]() {
-        didSet {
-            setup()
-        }
-    }
-    var cityList = [[String: Any]]() {
-        didSet {
-            setup()
-        }
-    }
+    var prefList = [[String: Any]]()
+    var cityList = [[String: Any]]()
     
     var areaPickerViewDelegate: AreaPickerViewDelegate?
     
@@ -39,24 +31,22 @@ class AreaPickerView: UIPickerView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    private func setup() {
+        
         self.delegate = self
         self.showsSelectionIndicator = true
-
+        
         let doneItem = UIBarButtonItem(title: "完了", style: .done, target: self, action: #selector(AreaPickerView.didTapDone(_:)))
         let cancelItem = UIBarButtonItem(title: "キャンセル", style: .plain, target: self, action: #selector(AreaPickerView.didTapCancel(_:)))
         let spacerItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-
+        
         toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
         toolbar?.barStyle = UIBarStyle.default
         toolbar?.setItems([cancelItem, spacerItem, doneItem], animated: true)
         toolbar?.sizeToFit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
     @objc private func didTapDone(_ sender: AreaPickerView) {
